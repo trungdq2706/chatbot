@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <title>Danh sách Email</title>
+  <style>
+    /* Table styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f0f0f0;
+    }
+
+    button {
+      padding: 8px 12px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* Email form styling */
+    #email-form {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px; /* Adjust width as needed */
+        background-color: #f5f5f5;;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: none;
+        z-index: 100;
+    }
+
+    #email-form.active {
+      display: block; /* Show the form when active */
+    }
+    
+    #email-form label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        font-family: "Roboto",
+        padding: 8px;
+        margin-top: 5px;
+        margin-left: 10px
+      }
+  
+      #email-form input[type="text"],
+      #email-form input,textarea {
+        width: 90%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px; /* Increased corner roundness */
+        font-size: 16px;
+        font-family: "Roboto", sans-serif; /* Example font */
+        margin: 0 auto 10px auto;
+        margin-left: 10px;
+      }
+  
+      #email-form button[type="submit"] {
+        background-color: #3498db; /* Example blue */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-family: "Roboto", sans-serif; /* Example font */
+        transition: background-color 0.2s ease-in-out; /* Hover effect */
+        margin-bottom: 10px;
+        margin-left: 10px;
+      }
+      #email-form button[type="submit"]:hover {
+        background-color: #2980b9; /* Darker blue on hover */
+      }
+
+    /* Close button styling */
+    #email-form #close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      /* SendAllEmail form styling */
+      #sendall-form {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 400px; /* Adjust width as needed */
+          background-color: #f5f5f5;;
+          border-radius: 5px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          display: none;
+          z-index: 100;
+      }
+  
+      #sendall-form.active {
+        display: block; /* Show the form when active */
+      }
+      
+      #sendall-form label {
+          display: block;
+          margin-bottom: 10px;
+          font-weight: bold;
+          font-family: "Roboto",
+          padding: 8px;
+          margin-top: 5px;
+          margin-left: 10px
+        }
+    
+        #sendall-form input[type="text"],
+        #sendall-form input,textarea {
+          width: 90%;
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 5px; /* Increased corner roundness */
+          font-size: 16px;
+          font-family: "Roboto", sans-serif; /* Example font */
+          margin: 0 auto 10px auto;
+          margin-left: 10px;
+        }
+    
+        #sendall-form button[type="submit"] {
+          background-color: #3498db; /* Example blue */
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+          font-family: "Roboto", sans-serif; /* Example font */
+          transition: background-color 0.2s ease-in-out; /* Hover effect */
+          margin-bottom: 10px;
+          margin-left: 10px;
+        }
+        #sendall-form button[type="submit"]:hover {
+          background-color: #2980b9; /* Darker blue on hover */
+        }
+  
+      /* Close button styling */
+      #sendall-form #close-button {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          cursor: pointer;
+          font-size: 16px;
+        }
+      .btn-primary {
+        /* Existing styles for the button */
+        background-color: #007bff; /* Blue background color */
+        color: #fff; /* White text color */
+        border: none; /* Remove default border */
+        padding: 10px 20px; /* Add padding for spacing */
+        border-radius: 5px; /* Rounded corners */
+        cursor: pointer; /* Indicate clickable area */
+        margin-left: 20px; /* Add left margin for spacing */
+        margin-top: 20px
+      }
+      
+      .btn-primary:hover { /* Style for hover state */
+        background-color: #0056b3; /* Darker blue on hover */
+      }  
+      .button-container div {
+        float: left;
+        width: 19%; /* Adjust width as needed */
+      }
+      
+      .button-container div:last-child {
+        float: right;
+      }
+  </style>
+</head>
+<body>
+  <h1>Danh sách Email</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tên người dùng</th>
+        <th>Email</th>
+        <th>Gửi</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for email in emails %}
+      <tr>
+        <td>{{ email['name'] }}</td>
+        <td>{{ email['email'] }}</td>
+        <td>
+          <button type="button" onclick="toggleEmailForm('{{ email['email'] }}')">Gửi</button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <form id="email-form">
+    <span id="close-button" onclick="toggleEmailForm()">X</span>
+    <label for="to_email">Gửi đến:</label>
+    <input type="email" id="to_email" name="to_email" required readonly>
+    <br>
+    <label for="subject">Tiêu đề:</label>
+    <input type="text" id="subject" name="subject" required>
+    <br>
+    <label for="body">Nội dung:</label>
+    <textarea id="body" name="body" rows="5" required></textarea>
+    <br>
+    <button type="submit">Gửi email</button>
+  </form>
+
+  <form id="sendall-form">
+    <span id="close-button" onclick="EmailFormForAall()">X</span>
+    <br>
+    <label for="subject">Tiêu đề:</label>
+    <input type="text" id="subject" name="subject" required>
+    <br>
+    <label for="body">Nội dung:</label>
+    <textarea id="body" name="body" rows="5" required></textarea>
+    <br>
+    <button type="submit">Gửi email</button>
+  </form>
+  
+  <div class="button-container">
+    <div><a href="\admin" class="btn btn-primary stretched-link">Go Home</a></div>
+    <div><button class="btn btn-primary stretched-link" onclick="EmailFormForAall()">Gửi tất cả</button></div>
+  </div>
+  <script>
+    // Function to toggle email form visibility
+    function toggleEmailForm(emailAddress) {
+      document.getElementById("to_email").value = emailAddress;
+      document.getElementById("email-form").classList.toggle("active");
+      event.preventDefault();
+    }
+    function EmailFormForAall() {
+      document.getElementById("sendall-form").classList.toggle("active");
+      event.preventDefault();
+    }
+    // Handle email form submission
+const emailForm = document.getElementById("email-form");
+
+emailForm.addEventListener("submit", async (event) => {
+  event.preventDefault(); // Prevent default form submission
+
+  const formData = new FormData(emailForm); // Get form data
+  formData.append("to", formData.get("to_email")); // Add additional fields if needed
+  formData.append("subject", formData.get("subject"));
+  formData.append("body", formData.get("body"));
+  //formData.append("attachment", emailForm.elements["attachment"].files[0]);
+
+  try {
+    const response = await fetch("/send-email", { // Replace with your script path
+      method: "POST",
+      body: formData,
+    });
+
+    if (response.ok) {
+      alert("Đã gửi mail!"); // Success message
+      emailForm.reset(); // Clear form fields
+      document.getElementById("email-form").classList.remove("active"); // Hide form
+    } else {
+      alert("Không thành công! Vui lòng thử lại."); // Error message
+    }
+  } catch (error) {
+    console.error(error); // Log errors for debugging
+    alert("Không thành công! Vui lòng thử lại."); // Generic error message
+  }
+});
+const emailallForm = document.getElementById("sendall-form");
+
+emailallForm.addEventListener("submit", async (event) => {
+  event.preventDefault(); // Prevent default form submission
+
+  const formallData = new FormData(emailallForm); // Get form data
+  formallData.append("subject", formallData.get("subject"));
+  formallData.append("body", formallData.get("body"));
+  //formData.append("attachment", emailForm.elements["attachment"].files[0]);
+
+  try {
+    const response = await fetch("/send-allemail", { // Replace with your script path
+      method: "POST",
+      body: formallData,
+    });
+
+    if (response.ok) {
+      alert("Đã gửi mail!"); // Success message
+      emailallForm.reset(); // Clear form fields
+      document.getElementById("sendall-form").classList.remove("active"); // Hide form
+    } else {
+      alert("Không thành công! Vui lòng thử lại."); // Error message
+    }
+  } catch (error) {
+    console.error(error); // Log errors for debugging
+    alert("Không thành công! Vui lòng thử lại."); // Generic error message
+  }
+});
+</script>
+</body>
+</html>

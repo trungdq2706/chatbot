@@ -1,0 +1,16 @@
+- Bước 1: Mở terminal trong VSCode sau đó pip install -r requirements.txt
+- Bước 2: Mở Terminal trong VS Code. Chạy dòng code "python app.py". Sau  đó giữ ctrl + chuột trái vào http://127.0.0.1:5000
+- Bước 3: Giao diện sẽ được hiện thị
+Giao diện chung cho người dùng
+- Giao diện là gồm ô textbox
+    - Nhập câu hỏi cần hỏi xong nhấn Enter thì câu trả lời hiện ra.
+    - Đối với những câu chưa chạy được người dùng nhập mail để thầy/ cô tư vấn viên trả lời trực tiếp
+
+Đối với người dùng admin
+- Nhấn nút Đăng nhập admin (Username là 'admin' và password là 'admin'). Sau khi đăng nhập thành công
+- Giao diện cho admin
+    - Muốn xem lại câu đã hỏi chọn Go History
+    - Xem xong trả về Go Home
+    - Muốn Gửi mail cho thầy cô tư vấn thì chọn Send-Mail 
+    - Muốn gửi thầy cô nào chọn Button Gửi của gmail đó hoặc có thể gửi tất cả chọn button "Gửi tất cả"
+    - Sau khi thực hiện sau trả về trang chủ chọn "Go Home"

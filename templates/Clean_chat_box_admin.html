@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
+    <!--  All snippets are MIT license http://bootdey.com/license -->
+    <title>CHATBOT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+
+body {
+background:#ddd;
+margin-top:10px;
+}
+
+.chat-box {
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    overflow: hidden
+}
+
+.chats {
+    padding: 30px 15px
+}
+
+.chat-avatar {
+    float: right
+}
+
+.chat-avatar .avatar {
+    width: 30px;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2),0 6px 10px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2),0 6px 10px 0 rgba(0,0,0,0.3);
+}
+
+.chat-body {
+    display: block;
+    margin: 10px 30px 0 0;
+    overflow: hidden
+}
+
+.chat-body:first-child {
+    margin-top: 0
+}
+
+.chat-content {
+    position: relative;
+    display: block;
+    float: right;
+    padding: 8px 15px;
+    margin: 0 20px 10px 0;
+    clear: both;
+    color: #fff;
+    background-color: #62a8ea;
+    border-radius: 4px;
+        -webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+}
+
+.chat-content:before {
+    position: absolute;
+    top: 10px;
+    right: -10px;
+    width: 0;
+    height: 0;
+    content: '';
+    border: 5px solid transparent;
+    border-left-color: #62a8ea
+}
+
+.chat-content>p:last-child {
+    margin-bottom: 0
+}
+
+.chat-content+.chat-content:before {
+    border-color: transparent
+}
+
+.chat-time {
+    display: block;
+    margin-top: 8px;
+    color: rgba(255, 255, 255, .6)
+}
+
+.chat-left .chat-avatar {
+    float: left
+}
+
+.chat-left .chat-body {
+    margin-right: 0;
+    margin-left: 30px
+}
+
+.chat-left .chat-content {
+    float: left;
+    margin: 0 0 10px 20px;
+    color: #76838f;
+    background-color: #dfe9ef
+}
+
+.chat-left .chat-content:before {
+    right: auto;
+    left: -10px;
+    border-right-color: #dfe9ef;
+    border-left-color: transparent
+}
+
+.chat-left .chat-content+.chat-content:before {
+    border-color: transparent
+}
+
+.chat-left .chat-time {
+    color: #a3afb7
+}
+
+.panel-footer {
+    padding: 0 30px 15px;
+    background-color: transparent;
+    border-top: 1px solid transparent;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.avatar img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border: 0 none;
+    border-radius: 1000px;
+}
+.chat-avatar .avatar {
+    width: 30px;
+}
+.avatar {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    white-space: nowrap;
+    border-radius: 1000px;
+    vertical-align: bottom;
+
+}
+.wrapper {
+   padding: 10px;
+   text-align: center;
+}
+
+#responseForm input[type="text"],
+#responseForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+#email {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#responseForm button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+#responseForm button:hover {
+    background-color: #45a049;
+}
+
+#responseForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  z-index: 9999; /* Đảm bảo form hiển thị phía trên */
+}
+
+.panel-title {
+  font-size: 24px; 
+  font-weight: bold; 
+  color: #333; 
+  margin-top: 15px;
+  text-align: center;
+}
+
+.panel-title i {
+  margin-right: 5px; 
+}
+
+#responseForm button[type="button"] {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+#responseForm button[type="button"]:hover {
+  background-color: darkred;
+}
+
+#responseForm button[type="button"]::before {
+  content: "X";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+}
+.button-container div {
+  float: left;
+  width: 20%; /* Adjust width as needed */
+}
+
+.button-container div:last-child {
+  float: right;
+}
+/* New styles for login button */
+#loginButton {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+#loginButton:hover {
+    background-color: #0056b3;
+}
+
+#loginForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    z-index: 9999;
+    display: none;
+}
+
+#loginForm button[type="button"] {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+#loginForm button[type="button"]:hover {
+    background-color: darkred;
+}
+
+#loginForm button[type="button"]::before {
+    content: "X";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+}
+#loginForm input[type="text"],
+#loginForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+}
+#loginForm input[type="password"],
+#loginForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+}
+#loginForm button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.ml-2 {
+  margin-left: 10px; /* Adjust as necessary */
+}
+    </style>
+</head>
+<body>
+<div class="container bootstrap snippets bootdeys">
+<div class="col-md-7 col-xs-12 col-md-offset-2">
+  <!-- Panel Chat -->
+  <div class="panel" id="chat">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <i class="icon wb-chat-text" aria-hidden="true"></i> CHATBOT TƯ VẤN CHO SINH VIÊN CNTT VÀ KTDL
+      </h3>
+      <button id="loginButton" onclick="handleLogout()" >Đăng xuất</button>
+    </div>
+    <div class="panel-body">
+      <div class="chats" id = "chatbot">
+        <div class="chat chat-left">
+          <div class="chat-avatar">
+            <a class="avatar avatar-online" data-toggle="tooltip" href="#" data-placement="left" title="" data-original-title="Edward Fletcher">
+              <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="...">
+            </a>
+          </div>
+          <div class="chat-body">
+            <div class="chat-content">
+              <p>Xin chào, rất vui được gặp bạn</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="panel-footer">
+      <!-- <form> -->
+        <div class="form-group d-flex" id="userInput">
+            <input id="textInput" type="text" name="msg" placeholder="Message" class='form-control'/>
+            <button onclick="getBotResponse()" class="btn btn-primary ml-2">Gửi</button>
+        </div>
+      <div class="wrapper" >
+</div>
+    </div>
+  </div>
+<div class="button-container">
+    <div><a href="\sql" class="btn btn-primary stretched-link">Go History</a></div>
+    <div><a href="\homesendmail" class="btn btn-primary stretched-link">Send Email</a></div>
+</div>
+</div>
+</div>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<form id="responseForm" style="display: none;">
+  <div style="text-align: right;">
+    <button type="button" onclick="closeForm()"></button>
+  </div>
+  <label for="question">Câu hỏi của bạn:</label><br>
+  <input type="text" id="question" name="question" placeholder="Câu hỏi" hidden><br>
+  <input type="email" id="email" name="email" placeholder="Email của bạn" required><br>
+  <button type="submit">Gửi</button>
+</form>
+<script>
+    function showResponseForm() {
+      $("#gmailInput").val("");
+      setTimeout(function() {
+        $("#responseForm").show(); 
+      }, 2500); 
+    }
+    function closeForm() {
+      $("#responseForm").hide();
+    }
+    function handleLogout() {
+      /*$("#loginButton").text("Đăng nhập");
+      $("#loginButton").off("click").on("click", function() {
+          showLoginForm();
+      });
+      $(".button-container a").hide();
+      $(".button-gopage a").show();
+      closeLoginForm();
+      $("#adminPassword").val('');*/
+      window.location.href = "/";
+  } 
+    var x; 
+    function getBotResponse(){
+      var rawText = $("#textInput").val();
+      var userHtml = '<div class="chat"><div class="chat-avatar"><a class="avatar avatar-online" data-toggle="tooltip" href="#" data-placement="right" title="" data-original-title="June Lane"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="..."></a></div><div class="chat-body"><div class="chat-body"><div class="chat-content"><p>' + rawText+ "</p></div></div></div></div>";
+        $("#textInput").val("");
+        $("#chatbot").append(userHtml);
+        document
+        .getElementById("userInput")
+        .scrollIntoView({block : "start",behavior: "smooth"});
+        $.get("/get1", { msg: rawText }).done(function(data){
+          var dt=data.split(' ');
+          var len = parseInt(dt[dt.length-1])
+          dt=dt.slice(0,dt.length-len-1).join(' ');
+          var botHtml = '<div class="chat chat-left"><div class="chat-avatar"><a class="avatar avatar-online" data-toggle="tooltip" href="#" data-placement="left" title="" data-original-title="Edward Fletcher"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="..."></a></div><div class="chat-body"><div class="chat-content"><p>'+"Trả lời câu hỏi : "+rawText+ '</br>' +dt+'</p></div></div></div>';
+          $('#chatbot').append(botHtml);
+          document
+          .getElementById("userInput")
+          .scrollIntoView({block:"start",behavior: "smooth" });
+
+          var dta = data.split('</br>');
+          var lastPart = dta[dta.length - 1];
+          var hasNoAnswer = lastPart.includes("no_answer");
+          if (hasNoAnswer) {
+            showResponseForm();
+            $("#question").val(rawText);
+            $("#responseForm").submit(function(e) {
+            e.preventDefault(); // Ngăn chặn gửi form mặc định
+            // Thêm mã xử lý cho dữ liệu được gửi
+            $(this).hide();
+          });
+          }
+        });
+    }
+    $("#textInput").keypress(function(e) {
+      if (e.which == 13) {
+        getBotResponse();
+      }
+    });
+    $("#responseForm").submit(function(e) {
+      e.preventDefault(); // Prevent default form submission
+      var userEmail = $("#email").val();
+      var userQuestion = $("#question").val();
+    $.ajax({
+      url: '/save_question_gmail', // Replace with your endpoint URL
+      method: 'POST',
+      data: {
+        question: userQuestion,
+        email: userEmail
+      },
+      success: function(response) {
+        if (response.status === 'success') {
+          alert("Gửi thành công! Cảm ơn bạn đã gửi câu hỏi.");
+          $("#responseForm").hide(); // Hide form after successful submission
+        } else {
+          alert("Có lỗi xảy ra, vui lòng thử lại!");
+        }
+      },
+      error: function(error) {
+        console.error("Error saving data:", error);
+        alert("Có lỗi xảy ra, vui lòng thử lại!");
+      }
+    });
+  });
+</script>
+</body>
+</html>
