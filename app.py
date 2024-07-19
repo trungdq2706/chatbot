@@ -31,7 +31,6 @@ def chatbot_response():
     msg1 = request.args.get('msg')
     connection = Sqlite.create_connection("sm_app.sqlite")
     msg=handing_question.handing(msg1)
-    print(msg)
     res=""
     tag_temp=""
     for i in msg:
