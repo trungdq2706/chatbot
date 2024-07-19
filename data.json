@@ -2484,7 +2484,7 @@
             "Sinh viên vừa mới tốt nghiệp có được nhận giấy chứng nhận tốt nghiệp tạm thời không?"
          ],
          "responses": [
-            "Khi sinh viên có đầy đủ điểm học kỳ và đã hoàn tất chương trình học, Sinh viên có thể làm đơn xin xác nhận đã Hoàn tất chương trình học và nộp tại Phòng Đào tạo để được xác nhận. Việc xét tốt nghiệp sẽ tiến hành định kỳ vào tháng 3, 9. Những trường hợp môn học kết thúc và có điểm sớm trong học kỳ, xét tốt nghiệp sẽ tiến hành vào tháng 6, 12. Giấy chứng nhận tốt nghiệp tạm thời sẽ phát sau ngày họp xét tốt nghiệp là 3 tuần. Sinh viên xem thông báo trên trang web Phòng Đào tạo để biết địa điểm và thời gian nhận"
+            "Khi sinh viên có đầy đủ điểm học kỳ và đã hoàn tất chương trình học, Sinh viên có thể làm đơn xin xác nhận đã Hoàn tất chương trình học và nộp tại Phòng Đào tạo để được xác nhận."
          ]
       },
       {
@@ -3346,7 +3346,10 @@
             "Khi cần phúc khảo bài thi, em cần thực hiện thủ tục nào?",
             "Để yêu cầu phúc khảo bài thi cuối kỳ, phải làm gì?",
             "Có cách nào để kiểm tra lại bài thi cuối kỳ sau khi xem kết quả không?",
-            "Khi muốn kiểm tra lại kết quả bài thi, có cách nào để yêu cầu phúc khảo không?"
+            "Khi muốn kiểm tra lại kết quả bài thi, có cách nào để yêu cầu phúc khảo không?",
+            "Tôi muốn phúc khảo điểm thi như thế nào",
+            "Em muốn phúc khảo bài thi thì làm sao",
+            "Em có thắc mắc điểm thi, em làm sao để phúc khảo điểm"
          ],
          "responses": [
             "Sinh viên lên văn phòng Khoa, nhập dữ liệu cần thiết và nộp lệ phí vào máy tự động (đặt trước văn phòng Khoa). Sinh viên nộp giấy đăng ký mà máy đã in ra cho văn phòng Khoa và chờ nhận kết quả chấm phúc khảo tại văn phòng Khoa 1 tuần sau khi hết thời gian nộp giấy phúc khảo"
@@ -3873,6 +3876,39 @@
          ],
          "responses": [
             "Bằng cử nhân dành cho khối kinh tế , và bằng kĩ sử dành cho khối kỹ thuật "
+         ]
+      },
+      {
+         "tag": "xettotnghiep",
+         "patterns": [
+            "Cho em hỏi khi nào thông báo xét tốt nghiệp",
+            "Thời gian xét tốt nghiệp diễn ra khi nào",
+            "Khi nào trường có thông báo xét tốt nghiệp",
+            "Cho tôi hỏi thời gian xét tốt nghiệp",
+            "Nhà trường thường xét tốt nghiệp vào những đợt nào",
+            "Em có thắc mắc về thời gian xét tốt nghiệp của trường",
+            "Cho em hỏi trường 1 năm có mấy đợt xét tốt nghiệp"
+
+         ],
+         "responses": [
+            "Việc xét tốt nghiệp sẽ tiến hành định kỳ vào tháng 3, 9. Những trường hợp môn học kết thúc và có điểm sớm trong học kỳ, xét tốt nghiệp sẽ tiến hành vào tháng 6, 12."
+         ]
+      },
+      {
+         "tag": "sinhhoatdaukhoa",
+         "patterns": [
+            "Khi nào có sinh hoạt chính trị đầu khóa",
+            "Thời gian sinh hoạt chính trị đầu khóa diễn ra khi nào",
+            "Cho em hỏi khi nào làm sinh hoạt chính trị đầu khóa",
+            "Tháng mấy sinh viên sẽ làm sinh hoạt chính trị đầu khóa",
+            "Thời gian nào sinh viên làm sinh hoạt chính trị đầu khóa",
+            "Cho tôi hỏi khi nào sinh hoạt chính trị đầu khóa",
+            "Làm bài sinh hoạt chính trị đầu khóa ở đâu",
+            "Thời gian diễn ra sinh hoạt chính trị đầu khóa"
+
+         ],
+         "responses": [
+            "Sinh hoạt chính trị đầu khóa thường diễn ra đầu học kỳ 1, vào tháng 9 và các em làm bài trên https://fhqx.hcmute.edu.vn/"
          ]
       }
    ]
