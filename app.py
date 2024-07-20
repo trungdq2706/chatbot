@@ -115,23 +115,41 @@ def home_sendmail():
 
 @app.route("/send-email", methods=['POST'])
 #Hàm gửi email cho 1 người
+# def send_email():
+#     upload_dir = 'D:\Chatbot'
+#     to_email = request.form["to_email"]
+#     subject = request.form["subject"]
+#     body = request.form["body"]#
+#     attachment = "unanswered_questions.txt"
+#     try:
+#         yag = yagmail.SMTP("trungdq.de@gmail.com","navwolwemfmtlubm")
+#         yag.send(to=to_email,subject=subject,contents=body,attachments=attachment)
+#         uploaded_file_path = os.path.join(upload_dir, attachment) if attachment else None
+#         if uploaded_file_path:
+#             with open(uploaded_file_path, 'w') as f:  # Truncate the file
+#                 f.truncate(0)
+#         return jsonify({'status': 'success', 'message': 'Email sent successfully!'})
+#     except Exception as e:
+#         # Handle errors and log them
+#         print(f"Error sending email")
+#         return jsonify({'status': 'error', 'message': 'Failed to send email!'})
 def send_email():
-    upload_dir = 'D:\Chatbot'
     to_email = request.form["to_email"]
     subject = request.form["subject"]
-    body = request.form["body"]#
+    body = request.form["body"]
     attachment = "unanswered_questions.txt"
     try:
-        yag = yagmail.SMTP("trungdq.de@gmail.com","navwolwemfmtlubm")
-        yag.send(to=to_email,subject=subject,contents=body,attachments=attachment)
-        uploaded_file_path = os.path.join(upload_dir, attachment) if attachment else None
-        if uploaded_file_path:
-            with open(uploaded_file_path, 'w') as f:  # Truncate the file
+        yag = yagmail.SMTP("trungdq.de@gmail.com", "navwolwemfmtlubm")
+        yag.send(to=to_email, subject=subject, contents=body, attachments=attachment)
+        
+        if os.path.exists(attachment):
+            with open(attachment, 'w') as f:  # Truncate the file
                 f.truncate(0)
+        
         return jsonify({'status': 'success', 'message': 'Email sent successfully!'})
     except Exception as e:
         # Handle errors and log them
-        print(f"Error sending email")
+        print(f"Error sending email: {e}")
         return jsonify({'status': 'error', 'message': 'Failed to send email!'})
 @app.route("/send-allemail", methods=['POST'])
 #Hàm gửi mail cho tất cả
